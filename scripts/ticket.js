@@ -21,7 +21,6 @@ function selectSeat(seatId, price) {
     // console.log('Button Clicked');
 
     if (selectedSeats.includes(seatId)) {
-        // console.log('True');
         if (couponApplied) {
             console.log("You can't deselect your seat after applying a coupon.");
             return;
@@ -36,7 +35,6 @@ function selectSeat(seatId, price) {
 
     }
     else {
-        // console.log('False');
         if (selectedSeats.length >= 4) {
             console.log("You can't select more than 4 seats.");
             return;
@@ -58,10 +56,6 @@ function selectSeat(seatId, price) {
     updateSelectedSeatsTable();
 }
 
-// function numberOfLeftSeats(selectedSeatsAmount) {
-//     const leftSeat = document.getElementById('left-seats');
-//     console.log(leftSeat);
-// }
 
 function updateSelectedSeatsTable() {
     const table = document.getElementById("selectedSeatsTable");
@@ -152,20 +146,11 @@ function updateSelectedSeatsTable() {
 }
 
 function applyCoupon() {
-    // Debugging statement to check if function is called
-    console.log("applyCoupon() function called.");
 
     const couponInput = document.getElementById("couponInput");
     const applyButton = document.getElementById("applyButton");
     const table = document.getElementById("table");
     const grandTotalCell = document.getElementById("grandTotal");
-
-    // Debugging statements to check if elements are found
-    console.log("couponInput:", couponInput);
-    console.log("applyButton:", applyButton);
-    console.log("table:", table);
-    console.log("grandTotalCell:", grandTotalCell);
-
 
     const couponCode = couponInput.value.trim().toUpperCase();
 
@@ -189,7 +174,6 @@ function applyCoupon() {
         console.error("Total price cell not found.");
     }
 
-
     const footerRow = table.insertRow();
     const totalCell1 = footerRow.insertCell(0);
     const totalCell2 = footerRow.insertCell(1);
@@ -211,9 +195,6 @@ function applyCoupon() {
     totalCell3Footer.style.color = '#03071299';
     totalCell3Footer.style.textAlign = "center";
 
-
-
-    // Display the grand total below the table footer
     if (grandTotalCell) {
         grandTotalCell.textContent = discountedPrice;
     } else {
@@ -227,56 +208,44 @@ function applyCoupon() {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const nextButton = document.querySelector(".btn");
+function handleNextButtonClick() {
+    const nameInput = document.getElementById("nameInput");
+    const phoneInput = document.getElementById("phoneInput");
+    const emailInput = document.getElementById("emailInput");
 
-    nextButton.addEventListener("click", function () {
-        const nameInput = document.querySelector("input[type='text']");
-        const phoneInput = document.querySelector("input[type='number']");
-        const emailInput = document.querySelector("input[type='email']");
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const email = emailInput.value.trim();
 
-        const name = nameInput.value.trim();
-        const phone = phoneInput.value.trim();
-        const email = emailInput.value.trim();
-
-        // Validate if all fields are filled
-        if (name !== "" && phone !== "" && email !== "") {
-            // Validate email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert("Please enter a valid email address.");
-                return;
-            }
-
-            // All fields are filled correctly, show success section
-            showSuccessSection();
-        } else {
-            alert("Please fill out all fields.");
+    if (name !== "" && phone !== "" && email !== "") {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
         }
-    });
-
-    function showSuccessSection() {
-        // Hide the form section
-        const banner = document.getElementById("banner");
-        banner.style.display = "none";
-
-        const offerSection = document.getElementById("offerSection");
-        offerSection.style.display = "none";
-
-        const ticketSection = document.getElementById("ticketSection");
-        ticketSection.style.display = "none";
-
-        const seatSection = document.getElementById("seatSection");
-        seatSection.style.display = "none";
-
-        // const seatSection = document.getElementById("seatSection");
-        // seatSection.style.display = "none";
-
-        // Show the success section
-        const successSection = document.getElementById("successSection");
-        successSection.style.display = "block";
+        showSuccessSection();
+    } else {
+        alert("Please fill out all fields.");
     }
-});
+}
+
+function showSuccessSection() {
+    // Hide the form section
+    const homeSection = document.getElementById("homeSection");
+    homeSection.classList.add('hidden');
+    const successSection = document.getElementById("successSection");
+    successSection.classList.remove('hidden');
+}
+
+
+function showHomeSection() {
+    const homeSection = document.getElementById("homeSection");
+    homeSection.classList.remove('hidden');
+    const successSection = document.getElementById("successSection");
+    successSection.classList.add('hidden');
+}
+
+
 
 
 
