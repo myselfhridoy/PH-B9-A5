@@ -235,6 +235,8 @@ function showSuccessSection() {
     homeSection.classList.add('hidden');
     const successSection = document.getElementById("successSection");
     successSection.classList.remove('hidden');
+    const seatList = document.getElementById("seatList");
+    seatList.classList.remove('hidden');
 }
 
 
@@ -243,6 +245,7 @@ function showHomeSection() {
     homeSection.classList.remove('hidden');
     const successSection = document.getElementById("successSection");
     successSection.classList.add('hidden');
+
 }
 
 
